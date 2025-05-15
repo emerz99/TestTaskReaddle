@@ -63,21 +63,21 @@ final class UITests: BaseTestCase {
     }
     //Verify complete all tasks by taping on each task individually in list
     func testAllTasksAreSelected() {
-            MainScreen().ensureUserIsLoggedIn()
-            let app = XCUIApplication()
-            let tasks = app.cells.allElementsBoundByIndex
+        MainScreen().ensureUserIsLoggedIn()
+        let app = XCUIApplication()
+        let tasks = app.cells.allElementsBoundByIndex
+        
+        for task in tasks {
+            task.tap()
             
-            for task in tasks {
-                task.tap()
-                
-                if let index = tasks.firstIndex(of: task) {
-                    let taskImage = app.images.allElementsBoundByIndex[index]
-                    XCTAssertEqual(taskImage.value as? String, "Selected")
-                } else {
-                    XCTFail("Tasks are not marked as Completed")
-                }
+            if let index = tasks.firstIndex(of: task) {
+                let taskImage = app.images.allElementsBoundByIndex[index]
+                XCTAssertEqual(taskImage.value as? String, "Selected")
+            } else {
+                XCTFail("Tasks are not marked as Completed")
             }
-     }
+        }
+    }
     
     //Verify "Complete All" button marks all tasks as completed
     func testVerifyCompleteAllButtonMarksAllTasksAsCompleted() {
@@ -111,23 +111,23 @@ final class UITests: BaseTestCase {
         XCTAssertEqual(actualSubtasks, expectedSubtasks, "The subtask lists do not match.")
     }
     //Verify "Sort by Name" button sorts tasks alphabetically
-//    func testSortTasksByName() throws {
-//        var sorted = false
-//        var attempts = 0
-//        let maxAttempts = 3
-//        
-//        while !sorted && attempts < maxAttempts {
-//            MainScreen().tapSortByName()
-//            let listTasks = XCUIApplication().cells.staticTexts.allElementsBoundByIndex.map { $0.label }
-//            
-//            if listTasks == listTasks.sorted() {
-//                sorted = true
-//            } else {
-//                attempts += 1
-//            }
-//        }
-//        XCTAssertTrue(sorted, "List is still not sorted after \(maxAttempts) attempts")
-//    }
+    //    func testSortTasksByName() throws {
+    //        var sorted = false
+    //        var attempts = 0
+    //        let maxAttempts = 3
+    //
+    //        while !sorted && attempts < maxAttempts {
+    //            MainScreen().tapSortByName()
+    //            let listTasks = XCUIApplication().cells.staticTexts.allElementsBoundByIndex.map { $0.label }
+    //
+    //            if listTasks == listTasks.sorted() {
+    //                sorted = true
+    //            } else {
+    //                attempts += 1
+    //            }
+    //        }
+    //        XCTAssertTrue(sorted, "List is still not sorted after \(maxAttempts) attempts")
+    //    }
     //Verify "Sort by Name" button sorts tasks alphabetically
     func testSortTasksByName() {
         MainScreen().ensureUserIsLoggedIn()
@@ -148,25 +148,25 @@ final class UITests: BaseTestCase {
         MainScreen().checkIfCancelAllButtonIsShown()
     }
     //Verify subtasks can be sorted
-//    func testVerifySubtasksCanBeSorted() {
-//        MainScreen().ensureUserIsLoggedIn()
-//        MainScreen().tapMoreInfoButton()
-//        var sorted = false
-//        var attempts = 0
-//        let maxAttempts = 3
-//        
-//        while !sorted && attempts < maxAttempts {
-//            MainScreen().tapSortByName()
-//            let listSubtasks = XCUIApplication().cells.staticTexts.allElementsBoundByIndex.map { $0.label }
-//            
-//            if listSubtasks == listSubtasks.sorted() {
-//                sorted = true
-//            } else {
-//                attempts += 1
-//            }
-//        }
-//        XCTAssertTrue(sorted, "List is still not sorted after \(maxAttempts) attempts")
-//    }
+    //    func testVerifySubtasksCanBeSorted() {
+    //        MainScreen().ensureUserIsLoggedIn()
+    //        MainScreen().tapMoreInfoButton()
+    //        var sorted = false
+    //        var attempts = 0
+    //        let maxAttempts = 3
+    //
+    //        while !sorted && attempts < maxAttempts {
+    //            MainScreen().tapSortByName()
+    //            let listSubtasks = XCUIApplication().cells.staticTexts.allElementsBoundByIndex.map { $0.label }
+    //
+    //            if listSubtasks == listSubtasks.sorted() {
+    //                sorted = true
+    //            } else {
+    //                attempts += 1
+    //            }
+    //        }
+    //        XCTAssertTrue(sorted, "List is still not sorted after \(maxAttempts) attempts")
+    //    }
     func testSortSubtasksByName() {
         MainScreen().ensureUserIsLoggedIn()
         MainScreen().tapMoreInfoButton()
@@ -177,7 +177,7 @@ final class UITests: BaseTestCase {
         let expectedSubtasks = actualSubtasks.sorted()
         XCTAssertEqual(actualSubtasks, expectedSubtasks, "The subtask lists do not match.")
     }
-
+    
     
     //- Verify if subtasks are marked as completed if 'mark as completed' Sleep task on main screen
     func testSubtasksAreMarkedAsCompletedIfMarkSleepTaskAsCompleted() {
@@ -191,7 +191,7 @@ final class UITests: BaseTestCase {
     }
     
     // Verify if 'Sleep' task is marked as completed if 'mark as completed' all subtasks
-     func testCompleteAllSubtasksAndCheckIfSleepTaskIsCompleted(){
+    func testCompleteAllSubtasksAndCheckIfSleepTaskIsCompleted(){
         MainScreen().ensureUserIsLoggedIn()
         let app = XCUIApplication()
         let taskLabel = "Sleep"
@@ -217,48 +217,48 @@ final class UITests: BaseTestCase {
     }
     
     //- Verify if uncheck 'completed' subtask (e.g. 'Wait') -> Main task is also uncheked (Precondition: Sleep task and all subtasks are checked)
-//        func testUncheckAnySubtaskAndCheckIfSleepTaskIsUnchecked(){
-//            let app = XCUIApplication()
-//            let taskLabel = "Sleep"
-//            let task = app.cells.staticTexts[taskLabel]
-//            task.tap()
-//            MainScreen().tapMoreInfoButton()
-//            let subtasks = app.cells.allElementsBoundByIndex
-//            for subtask in subtasks {
-//                if let index = subtasks.firstIndex(of: subtask) {
-//                    let subtaskImage = app.images.allElementsBoundByIndex[index]
-//                    XCTAssertEqual(subtaskImage.value as? String, "Selected")
-//                } else {
-//                    XCTFail("Complete All doesn't work")
-//                }
-//            }
-//    
-//            let subtaskLabel = "Wait"
-//            let subtask = app.cells.staticTexts[subtaskLabel]
-//            subtask.tap()
-//            var subtaskIndex: Int? = nil
-//            for (index, subtask) in subtasks.enumerated() {
-//                if subtask.label == subtaskLabel {
-//                    subtaskIndex = index
-//                    break
-//                }
-//            }
-//            if let index = subtaskIndex {
-//                let subtaskImage = app.images.allElementsBoundByIndex[index]
-//                XCTAssertEqual(subtaskImage.value as? String, "Not selected", "Checkbox for task 'Wait' is not unchecked")
-//            }
-//            else {
-//                XCTFail("Item with label 'Wait' is not found")
-//            }
-//            
-//            MainScreen().tapBackButton()
-//            let taskImage = XCUIApplication().images.allElementsBoundByIndex.first { $0.label == taskLabel }
-//         //   XCTAssertEqual(taskImage.value as? String, "Not selected")
-//        }
-  
+    //        func testUncheckAnySubtaskAndCheckIfSleepTaskIsUnchecked(){
+    //            let app = XCUIApplication()
+    //            let taskLabel = "Sleep"
+    //            let task = app.cells.staticTexts[taskLabel]
+    //            task.tap()
+    //            MainScreen().tapMoreInfoButton()
+    //            let subtasks = app.cells.allElementsBoundByIndex
+    //            for subtask in subtasks {
+    //                if let index = subtasks.firstIndex(of: subtask) {
+    //                    let subtaskImage = app.images.allElementsBoundByIndex[index]
+    //                    XCTAssertEqual(subtaskImage.value as? String, "Selected")
+    //                } else {
+    //                    XCTFail("Complete All doesn't work")
+    //                }
+    //            }
+    //
+    //            let subtaskLabel = "Wait"
+    //            let subtask = app.cells.staticTexts[subtaskLabel]
+    //            subtask.tap()
+    //            var subtaskIndex: Int? = nil
+    //            for (index, subtask) in subtasks.enumerated() {
+    //                if subtask.label == subtaskLabel {
+    //                    subtaskIndex = index
+    //                    break
+    //                }
+    //            }
+    //            if let index = subtaskIndex {
+    //                let subtaskImage = app.images.allElementsBoundByIndex[index]
+    //                XCTAssertEqual(subtaskImage.value as? String, "Not selected", "Checkbox for task 'Wait' is not unchecked")
+    //            }
+    //            else {
+    //                XCTFail("Item with label 'Wait' is not found")
+    //            }
+    //
+    //            MainScreen().tapBackButton()
+    //            let taskImage = XCUIApplication().images.allElementsBoundByIndex.first { $0.label == taskLabel }
+    //         //   XCTAssertEqual(taskImage.value as? String, "Not selected")
+    //        }
     
-        
-        //Verify that tasks and subtasks are not unchecked while navigating between screens
+    
+    
+    //Verify that tasks and subtasks are not unchecked while navigating between screens
     func testCheckTasksAndSubtaskAreNotUncheckedWhileNavigationBetweenScreens(){
         MainScreen().ensureUserIsLoggedIn()
         MainScreen().tapLCompleteAllButton()

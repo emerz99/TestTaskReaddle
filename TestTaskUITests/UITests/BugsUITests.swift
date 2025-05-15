@@ -17,15 +17,15 @@ final class BugsUITests: BaseTestCase {
         for _ in 0..<7 {
             MainScreen().tapSortByName()
         }
-            let listTasksAfterSorting = app.cells.staticTexts.allElementsBoundByIndex.map { $0.label }
-            let sortedListTasks = listTasks.sorted()
-            if sortedListTasks == listTasksAfterSorting {
-                print("Item lists is sorted correctly")
-            } else {
-                print("‘Sort by Name’ button doesn’t work correct")
+        let listTasksAfterSorting = app.cells.staticTexts.allElementsBoundByIndex.map { $0.label }
+        let sortedListTasks = listTasks.sorted()
+        if sortedListTasks == listTasksAfterSorting {
+            print("Item lists is sorted correctly")
+        } else {
+            print("‘Sort by Name’ button doesn’t work correct")
         }
         
-      //  XCTAssertEqual(sortedListTasks, listTasksAfterSorting, "‘Sort by Name’ doesn’t work correct")
+        //  XCTAssertEqual(sortedListTasks, listTasksAfterSorting, "‘Sort by Name’ doesn’t work correct")
     }
     
     //Items are checked after clicking on ‘Sort by Name’
@@ -71,20 +71,20 @@ final class BugsUITests: BaseTestCase {
             }
         }
     }
-        //‘Complete All’ button is not changed to ‘Cancel All’ button  after clicking on ‘Complete All’ button-> not always reproduced
+    //‘Complete All’ button is not changed to ‘Cancel All’ button  after clicking on ‘Complete All’ button-> not always reproduced
     func testVerifyCompleteAllButtonChangedToCancelAllButton() {
-            MainScreen().ensureUserIsLoggedIn()
-            MainScreen().tapLCompleteAllButton()
-            XCTContext.runActivity(named: "Verify 'Complete All' changes to 'Cancel All'") { _ in
-                let exists = MainScreen().cancelAllButton.waitForExistence(timeout: 3)
-                if !exists {
-                          print("Button is not changed to 'Cancel All' after clicking 'Complete All'")
-                      } else {
-                          print("Button 'Cancel All' is shown")
-                      }
-             //   XCTAssertTrue(exists, "Button is not changed to  'Cancel All' after clicking 'Complete All'")
+        MainScreen().ensureUserIsLoggedIn()
+        MainScreen().tapLCompleteAllButton()
+        XCTContext.runActivity(named: "Verify 'Complete All' changes to 'Cancel All'") { _ in
+            let exists = MainScreen().cancelAllButton.waitForExistence(timeout: 3)
+            if !exists {
+                print("Button is not changed to 'Cancel All' after clicking 'Complete All'")
+            } else {
+                print("Button 'Cancel All' is shown")
             }
+            //   XCTAssertTrue(exists, "Button is not changed to  'Cancel All' after clicking 'Complete All'")
         }
+    }
     
     //‘Complete All’ button is not changed to ‘Cancel All’ button after clicking on all tasks individually
     func testCompleteAllIsNotChangedToCancellAllAfterCheckingTasksIndividually(){
@@ -95,9 +95,9 @@ final class BugsUITests: BaseTestCase {
             for task in tasks {
                 task.tap()
                 
-            let exists = MainScreen().cancelAllButton.waitForExistence(timeout: 3)
-            if !exists {
-                print("Button is not changed to 'Cancel All' after clicking on all tasks individually")
+                let exists = MainScreen().cancelAllButton.waitForExistence(timeout: 3)
+                if !exists {
+                    print("Button is not changed to 'Cancel All' after clicking on all tasks individually")
                 } else {
                     print("Button 'Cancel All' is shown")
                 }
@@ -116,10 +116,10 @@ final class BugsUITests: BaseTestCase {
         XCTContext.runActivity(named: "Verify Complete All button ss changed to Cancel All button on Sleep subtasks screen") { _ in
             let exists = MainScreen().cancelAllButton.waitForExistence(timeout: 3)
             if !exists {
-                      print("Button is not changed to 'Cancel All' on Sleep subtasks screen")
-                  } else {
-                      print("Button 'Cancel All' is shown")
-                  }
+                print("Button is not changed to 'Cancel All' on Sleep subtasks screen")
+            } else {
+                print("Button 'Cancel All' is shown")
+            }
             
         }
     }

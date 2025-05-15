@@ -21,7 +21,7 @@ class MainScreen {
     let passwordInput = XCUIApplication().secureTextFields["Password"].firstMatch
     let loginButton = XCUIApplication().buttons["Login"].firstMatch
     let errorMessage = XCUIApplication().staticTexts["Incorrect login or password format"]
-        
+    
     func tapSortByName() {
         sortByNameButton.tap()
     }
@@ -74,20 +74,20 @@ class MainScreen {
         XCTAssertTrue(loginInput.exists)
         loginInput.tap()
         loginInput.typeText(email)
-        }
-
+    }
+    
     func enterPassword(_ password: String) {
         XCTAssertTrue(passwordInput.exists)
         passwordInput.tap()
         passwordInput.typeText(password)
-        }
+    }
     
     func tapLogin() {
         XCUIApplication().keyboards.buttons["Return"].tap()
         loginButton.waitForExistence(timeout: 2)
         XCTAssertTrue(loginButton.exists)
         loginButton.tap()
-       }
+    }
     
     func checkIfErrorMessageIsShown() {
         XCTAssertTrue(errorMessage.exists, "Error message is not shown")
@@ -120,7 +120,7 @@ class MainScreen {
             MainScreen().tapLogoutButton()
             MainScreen().checkIfConfirmatioDialogIsShown()
             MainScreen().tapLogoutButtonInDialog()
-         
+            
             loginButton.waitForExistence(timeout: 3)
             XCTAssertTrue(loginButton.exists, "User couldn't log out")
         }
@@ -174,5 +174,5 @@ class MainScreen {
             }
         }
     }
-
+    
 }
