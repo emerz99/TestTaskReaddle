@@ -13,6 +13,7 @@ class LoginScreen {
     let passwordInput = XCUIApplication().secureTextFields["Password"].firstMatch
     let loginButton = XCUIApplication().buttons["Login"].firstMatch
     let errorMessage = XCUIApplication().staticTexts["Incorrect login or password format"]
+    let retryButton = XCUIApplication().buttons["Retry"].firstMatch
 
     func enterEmail(_ email: String) {
         XCTAssertTrue(loginInput.exists)
@@ -32,9 +33,16 @@ class LoginScreen {
         XCTAssertTrue(loginButton.exists)
         loginButton.tap()
        }
-    
+    func tapRetryButtonIfAvailable() {
+        if retryButton.exists{
+            retryButton.tap()
+        } else {
+            print("Retry button is not shown")
+        }
+    }
     func checkIfErrorMessageIsShown() {
         XCTAssertTrue(errorMessage.exists, "Error message is not shown")
     }
+    
     
 }

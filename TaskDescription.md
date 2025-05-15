@@ -26,7 +26,6 @@ Please reachout Oksana (otolstykh@readdle.com) if you have any questions.
 # TEST PLAN: 
 
 1. Introduction
-
 This test plan covers the approach for testing a mobile application with two features: Login and Checklist. The goal is to ensure these features function as expected, provide a smooth user experience, and maintain stability across different devices.
 
 2. Scope
@@ -70,7 +69,6 @@ Testing will be conducted in the following phases:
 - Regression Testing
 
 9. Entry and Exit Criteria
-
 - All required test environments are set up
 - Test cases are prepared and reviewed
 - All critical bugs are fixed before exit
@@ -82,7 +80,6 @@ Testing will be conducted in the following phases:
 - Test Summary Report
 
 11. Risks and Mitigations
-
 - Potential network issues impacting login tests
 - Inconsistent checklist data (Data persistence issues across sessions. Mitigation: Reset data between tests, verify correct storage methods.)
 
@@ -91,23 +88,30 @@ Testing will be conducted in the following phases:
 
 # LIST OF TEST CASES: 
 // Only summaries of tests: e.g. 
-- Perform login with correct login&password +
-- Perform login with incorrect login +
+- Perform login with correct login&password
+- Perform login with incorrect login
 - Verify all tasks are displayed in the task list
-- Verify a single task can be marked as completed 
+- Verify a single task can be marked as completed
 - Verify "Complete All" button marks all tasks as completed
+- Verify "Cancel All" button uncheck all task as completed
 - Verify 'Complete All' button is changed to 'Cancel All'
 - Verify "Sort by Name" button sorts tasks alphabetically
 - Verify list of subtasks are displayed when viewing task details (Verify that when the info button on the "Sleep" task is clicked, additional task details are displayed)
-- Verify subtasks can be checked as completed
+- Verify subtasks can be marked as completed
 - Verify subtasks can be sorted
 - Verify if subtasks are marked as completed if 'mark as completed' Sleep task on main screen
-- Verify if uncheck 'completed' subtask (e.g. 'Close eyes') -> Main task is also uncheked (Precondition: Sleep task and all subtasks are checked)
-- Verify logout from main screen
-- Verify logout from 'Sleep' subtasks screen
-- Cancel logout
+- Verify if uncheck 'completed' subtask (e.g. 'Wait') -> Main task is also uncheked (Precondition: Sleep task and all subtasks are checked) 
+- Verify logout from main screen 
+- Cancel logout 
+- Verify that tasks and subtasks are not unchecked while navigating between screens
 
 
 # LIST OF DISCOVERED ISSUES:
 // Only summaries of bug reports: e.g.
-- Login can be performed with empty password field (not a real issue)
+-  ‘Sort by Name’ doesn’t work correct (After clicking few times on button -> tasks are not sorted properly)
+-  Items are checked after clicking on ‘Sort by Name’
+-  Checkmarks are not checked after clicking ‘Complete All’ button (text in cells is greyed out)
+- ‘Complete All’ button is not changed to ‘Cancel All’ button  after clicking on ‘Complete All’ button-> not always reproduced
+- Random item from list is unchecked when click on certain one (e.g. ‘Subtasks’ screen, all subtask are completed -> tap on ‘Lie down’ item -> ‘Find a bed’ is unchecked
+- ‘Complete All’ button is not changed to ‘Cancel All’ button after clicking on all tasks individually
+- 'Complete All' button is not displayed on Sleep subtasks screen after marking Sleep task as completed and navigating to subtasks

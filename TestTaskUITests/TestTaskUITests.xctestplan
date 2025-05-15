@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "D3B06D90-D159-40D5-9550-1FBB77B1F6D5",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "repeatInNewRunnerProcess" : true,
+    "testRepetitionMode" : "retryOnFailure"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Tasks.xcodeproj",
+        "identifier" : "BDFC64BC2DD2189300567F62",
+        "name" : "TestTaskUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

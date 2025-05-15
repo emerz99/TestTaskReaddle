@@ -21,11 +21,11 @@
     
     
     
-    NSArray<NSString *> *arguments = [[NSProcessInfo processInfo] arguments];
-    if ([arguments containsObject:@"--ui-test-reset"]) {
-        NSString *defaultsName = [[NSBundle mainBundle] bundleIdentifier];
-        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:defaultsName];
-    }
+//    NSArray<NSString *> *arguments = [[NSProcessInfo processInfo] arguments];
+//    if ([arguments containsObject:@"--ui-test-reset"]) {
+//        NSString *defaultsName = [[NSBundle mainBundle] bundleIdentifier];
+//        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:defaultsName];
+//    }
     
     return YES;
 }
